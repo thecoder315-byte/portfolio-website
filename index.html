@@ -23,7 +23,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Hi, I'm <span class="highlight">Nishant Chandanshive</span></h1>
-            <p class="hero-subtitle">11-Year-Old Software Developer & Creative Enthusiast</p>
+            <p class="hero-subtitle"><span id="age"></span>-Year-Old Software Developer & Creative Enthusiast</p>
             <p class="hero-description">Building apps, games, websites, and AI projects with passion and innovation</p>
             <div class="hero-buttons">
                 <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -34,7 +34,7 @@
             <div class="code-block">
                 <span class="code-line"><span class="keyword">const</span> <span class="property">developer</span> = {</span>
                 <span class="code-line">  <span class="property">name</span>: <span class="string">"Nishant"</span>,</span>
-                <span class="code-line">  <span class="property">age</span>: <span class="number">11</span>,</span>
+                <span class="code-line">  <span class="property">age</span>: <span class="number" id="code-age">11</span>,</span>
                 <span class="code-line">  <span class="property">skills</span>: [<span class="string">"Apps"</span>, <span class="string">"Games"</span>, <span class="string">"AI"</span>],</span>
                 <span class="code-line">  <span class="property">passion</span>: <span class="string">"Building cool stuff"</span></span>
                 <span class="code-line">};</span>
@@ -47,7 +47,7 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I'm a passionate 11-year-old software developer with 1 year of hands-on experience creating innovative projects. My journey in technology has been an exciting adventure where I've developed apps, games, websites, AI solutions, and even a simple operating system.</p>
+                    <p>I'm a passionate <span id="age-about"></span>-year-old software developer with 1 year of hands-on experience creating innovative projects. My journey in technology has been an exciting adventure where I've developed apps, games, websites, AI solutions, and even a simple operating system.</p>
                     <p>I leverage AI tools to bring my ideas to life and share all my work on GitHub. My goal is to continue building my portfolio and start earning through Funngro when I turn 14, while attracting freelance opportunities and building my personal brand in the tech world.</p>
                     <p>Beyond coding, I'm also a creative individual who loves playing the piano and guitar, bringing harmony to both my code and my music.</p>
                     
@@ -197,6 +197,27 @@
     </footer>
 
     <script>
+        // Calculate age based on birth date (20/4/2014)
+        function calculateAge() {
+            const birthDate = new Date(2014, 3, 20); // Month is 0-indexed, so 3 = April
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            // If birthday hasn't occurred this year yet, subtract 1
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            return age;
+        }
+
+        // Set age in all places
+        const currentAge = calculateAge();
+        document.getElementById('age').textContent = currentAge;
+        document.getElementById('code-age').textContent = currentAge;
+        document.getElementById('age-about').textContent = currentAge;
+
         // Set current year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
